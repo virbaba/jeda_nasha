@@ -1,0 +1,107 @@
+@font-face {
+    font-family: japan;
+    src: url(./3413twklausanne.woff2);
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+.product-details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.product-details-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 40px;
+    margin: 10px;
+}
+
+.product-details-img img{
+    height: 400px;
+    width: 300px;
+  filter: drop-shadow(0px 5px 5px rgb(241, 98, 98));
+}
+
+.product-details-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+
+}
+
+.product-details-info h2{
+    font-size: 2rem;
+}
+
+.product-details-info p{
+    font-size: 1.5rem;
+}
+
+.product-details-info h3{
+    font-size: 1.2rem;
+}
+
+.product-shop{
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.product-shop button{
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    width: 200px;
+    color: white;
+    font-size: large;
+}
+
+.atc{
+    background-color: rgb(212, 80, 80);
+}
+
+.shop{
+    background-color: rgb(150, 81, 214);
+}
+
+.rel-prod{
+    margin: 10px;
+    font-family: fantasy;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .product-shop{
+        flex-direction: column;
+        padding: 5px;
+    }
+    
+    .product-shop button{  
+        width: 100%;
+    }
+}

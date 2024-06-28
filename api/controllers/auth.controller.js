@@ -1,0 +1,168 @@
+import User from "../models/user.model.js";
+import bcryptjs from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
+import jwt from "jsonwebtoken";
+import Cart from "../models/cart.model.js";
+
+export const signup = async (req, res, next) => {
+  const { username, email, password } = req.body;
+
+  if (
+    !username ||
+    !email ||
+    !password ||
+    username === "" ||
+    email === "" ||
+    password === ""
+  ) {
+    return next(errorHandler(400, "All fields are required"));
+  }
+
+  try {
+    // Step 1: Check if the user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json("You already have an account");
+    }
+
+    // Step 2: Hash the password
+    const hashedPassword = bcryptjs.hashSync(password, 10);
+
+    
+
+    // Step 3: Create a new user with reference to the cart
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+    const savedUser = await newUser.save();
+
+    // Step 4: Create a new cart with an empty products array
+    const newCart = new Cart({
+      userId: savedUser._id,
+      products: [],
+      totalPrice: 0
+    });
+
+    const savedCart = await newCart.save();
+    savedUser.cart = savedCart._id;
+    await savedUser.save();
+
+    res.json("Signup successful");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const signin = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password || email === "" || password === "") {
+    next(errorHandler(400, "All fields are required"));
+  }
+
+  try {
+    const validUser = await User.findOne({ email });
+    if (!validUser) {
+      return next(errorHandler(404, "User not found"));
+    }
+    // comparing the encrypted password by compareSync
+    const validPassword = bcryptjs.compareSync(password, validUser.password);
+    if (!validPassword) {
+      return next(errorHandler(400, "Invalid password"));
+    }
+    // creating token
+    const token = jwt.sign(
+      { id: validUser._id, isAdmin: validUser.isAdmin },
+      process.env.JWT_SECRET
+    );
+
+    // hiding the password in returnable object when user successfully sign in
+    const { password: pass, ...rest } = validUser._doc;
+
+    res
+      .status(200)
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const google = async (req, res, next) => {
+  const { email, name, googlePhotoUrl } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    // if user exists
+    if (user) {
+      const token = jwt.sign(
+        { id: user._id, isAdmin: user.isAdmin },
+        process.env.JWT_SECRET
+      );
+
+      // separate password and remain data from document
+      const { password, ...rest } = user._doc;
+
+      // sending response data without password
+      return res
+        .status(200)
+        .cookie("access_token", token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    } else {
+      const generatedPassword =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+
+      // hashSync for encrypting the password
+      const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+
+      // Step 1: Create a new user
+      const newUser = new User({
+        username:
+          name.toLowerCase().split(" ").join("") +
+          Math.random().toString(9).slice(-4),
+        email,
+        password: hashedPassword,
+        profilePicture: googlePhotoUrl,
+      });
+
+      const savedUser = await newUser.save();
+
+      // Step 2: Create a new cart with user_id reference
+      const newCart = new Cart({
+        userId: savedUser._id,
+        products: [],
+        totalPrice: 0
+      });
+
+      const savedCart = await newCart.save();
+
+      // Step 3: Add the cart reference to the user
+      savedUser.cart = savedCart._id;
+      await savedUser.save();
+
+      const token = jwt.sign(
+        { id: savedUser._id, isAdmin: savedUser.isAdmin },
+        process.env.JWT_SECRET
+      );
+
+      const { password, ...rest } = savedUser._doc;
+
+      res
+        .status(200)
+        .cookie("access_token", token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    }
+  } catch (error) {
+    next(`error in google OAuth controller ${error}`);
+  }
+};

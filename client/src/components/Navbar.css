@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: gilroy;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  padding: 20px 30px;
+  background-color: rgb(95, 45, 45);
+  box-shadow: 0 5px 5px rgb(11, 11, 11);
+  color: white;
+  overflow-x: scroll;
+}
+
+.navbar-part-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-part-2 {
+  display: none;
+}
+
+.logo-search {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+}
+
+.logo img {
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.search input {
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 10px;
+  width: 300px;
+  color: black;
+  margin-right: 5px;
+  font-size: large;
+}
+
+.navlink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.navlink a {
+  list-style: none;
+  font-family: japan;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navlink a:hover {
+  color: rgb(177, 176, 176);
+}
+
+.cart-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+.cart {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  
+  cursor: pointer;
+  height: 100%;
+}
+.cart div {
+  position: absolute;
+  padding: 0 10px;
+  border-radius: 50%;
+  background-color: rgb(202, 66, 66);
+  top: 0;
+  right: 0;
+  color: white;
+}
+
+.cart i {
+  font-size: 40px;
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100px;
+}
+
+.auth Button {
+  background: linear-gradient(to right, rgb(134, 67, 67), brown);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.auth .avatar {
+  height: 0px;
+  background-color: chartreuse;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    padding: 20px 5px;
+    flex-direction: column;
+   
+  }
+  .navbar-part-1 {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    width: 100%;
+  }
+  .navlink li {
+    font-size: 1.2rem;
+  }
+  .search {
+    display: none;
+  }
+  .navbar-part-2 {
+    display: block;
+  }
+
+  .search-2 input {
+    border: 0;
+    outline: 0;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    color: black;
+  }
+
+  .cart-auth {
+    gap: 1vw;
+  }
+}

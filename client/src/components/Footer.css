@@ -1,0 +1,81 @@
+.footer-section{
+    display: flex;
+    position: relative; /* Change from relative to fixed */
+    justify-content: space-between;
+    bottom: 0;
+ /* Ensure it stretches from the left */
+    width: 100%; /* Ensure it takes the full width */
+    padding: 20px;
+    background: linear-gradient(to right, rgb(202, 82, 82), rgb(166, 51, 51));
+    color: white;
+    margin-top: 10px;
+}
+
+.footer-part-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vw;
+    width: 30%;
+}
+
+.footer-part-1 h1{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.footer-part-1 .footer-tell-us-btn{
+    font-size: 30px;
+    font-weight: 500;
+    width: 50%;
+    background-color: rgb(255, 221, 0);
+    color: black;
+}
+
+.footer-part-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    gap:1vw;
+}
+
+.footer-contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1vw;
+}
+
+.footer-contact h2{
+    display: flex;
+    gap: 2vw;
+}
+
+.footer-contact h2 span{
+    letter-spacing: 2px;
+}
+
+.footer-contact-icon{
+    display: flex;
+    gap: 2vw;
+}
+
+@media screen and (max-width: 768px){
+    .footer-section{
+        overflow-x: scroll;
+        padding: 20px;
+    }
+    
+    .footer-contact h2 span{
+        letter-spacing: 0;
+    }
+    .footer-contact-icon{
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+    .footer-part-1 .footer-tell-us-btn{
+        width: 100%;
+    }
+
+}

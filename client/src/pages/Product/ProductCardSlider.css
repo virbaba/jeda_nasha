@@ -1,0 +1,22 @@
+@font-face {
+    font-family: japan;
+    src: url(../Home/3413twklausanne.woff2);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+
+  .brand-type{
+    margin: 10px;
+    font-family: fantasy;
+    font-weight: 500;
+    font-size: 30px;
+  }

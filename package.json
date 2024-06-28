@@ -1,0 +1,31 @@
+{
+  "type": "module",
+  "name": "api",
+  "version": "1.0.0",
+  "description": "This is the backend of jeda-nasha application",
+  "main": "./api/index.js",
+  "scripts": {
+    "start": "nodemon ./api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+  },
+  "keywords": [
+    "jeda",
+    "nasha",
+    "wine",
+    "daru"
+  ],
+  "author": "Virender Singh",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "nodemon": "^3.1.4",
+    "stripe": "^15.3.0"
+  }
+}

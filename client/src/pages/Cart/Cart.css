@@ -1,0 +1,189 @@
+@font-face {
+  font-family: japan;
+  src: url(./3413twklausanne.woff2);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: gilroy;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-main {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 75%;
+  position: relative;
+}
+
+.cart-head{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.cart-content{
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  border-top: 1px solid black;
+  gap: 2vw;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+.item-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 10px;
+}
+
+.item-img img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.item-details{
+  height: 100%;
+  width: 60%;
+  margin-top: 10px;
+  padding: 10px;
+}
+.item-details .item-winery{
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.item-details .item-wine{
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.item-details .item-rating{
+  font-size: 1.2rem;
+  font-weight: 350;
+}
+
+.qty-delete{
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-top: 10px;
+}
+
+.qty-delete .qty{
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+.qty button{
+  outline: 0;
+  border: 0;
+  padding: 0 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 2px 2px 10px black;
+}
+
+.qty button{
+  transform: scale(1.05);
+}
+
+.qty h2{
+  font-size: 20px;
+}
+.cart-delete{
+  cursor: pointer;
+  font-size: 30px;
+  color: brown;
+}
+
+.item-price{
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.total-price{
+  border-top: 1px solid black;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+
+
+.shop-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 25%;
+  height: 250px;
+}
+.shop-container h1{
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.shop-container button{
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 5px;
+  background-color: brown;
+  border-radius: 20px;
+  width: 100%;
+  color: white;
+  cursor: pointer;
+}
+
+.shop-container button:active{
+  scale: 1.05;
+}
+
+@media screen and (max-width:768px){
+  .cart-main {
+    width: 60%; 
+  }
+  .item-details{
+    width: 30%;
+    padding: 5px;
+  }
+  .item-price{
+    position: relative;
+    left: 20px;
+  }
+  .shop-container{
+    margin: 20px 0;
+    width: 40%;
+  }
+  .shop-container button{
+    font-size: 18px;
+  }
+}

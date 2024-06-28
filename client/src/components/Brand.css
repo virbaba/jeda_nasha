@@ -1,0 +1,67 @@
+@font-face {
+    font-family: japan;
+    src: url(./3413twklausanne.woff2);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+
+  .brand {
+    width: 100%;
+    display: flex;
+    justify-self: center;
+    justify-content: space-around;
+    margin: 2% 0 3% 0;
+    flex-wrap: wrap;
+  }
+  
+  .brand div {
+    outline: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    gap: 10px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0px 7px 10px rgb(213, 77, 77);
+    cursor: pointer;
+  }
+  
+  .brand div img {
+    object-position: top;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%; /* If you want circular images */
+  }
+
+  .brand div h2{
+    font-family: japan;
+
+  }
+
+  @media screen and (max-width: 360px) {
+    .brand {
+      display: none;
+      margin: 0;
+    }
+  }
+  @media screen  and (max-width: 700px) {
+    .brand div{
+      margin: 40px;
+    }
+  }
+
+  
+  

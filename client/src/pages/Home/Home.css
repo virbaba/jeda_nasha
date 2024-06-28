@@ -1,0 +1,132 @@
+@font-face {
+    font-family: japan;
+    src: url(./3413twklausanne.woff2);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+
+  .home{
+    width: 100%;
+    background-color: rgb(95, 45, 45);
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .part-1{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vw;
+    flex-direction: column;
+    width: 35%;
+    padding: 5px;
+  }
+
+  .part-1 h4{
+    font-family: japan;
+    font-size: 20px;
+    color: white;
+  }
+
+  .part-1 h1{
+    font-family: japan;
+    font-size: 50px;
+    color: rgb(255, 217, 0);
+    font-family: japan;
+  }
+
+  .part-1 p{
+    font-family: japan;
+    font-size: 15px;
+    color: white;
+    font-family: japan;
+    z-index: 2;
+  }
+
+  .part-2{
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+    height: 100%;
+    width: 60%;
+  }
+
+  .img-1{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .img-2{
+    display: flex;
+    align-items: center;
+    
+    height: 100%;
+    width: 100%;
+  }
+  .img-1 img{
+    rotate: 30deg;
+  }
+
+  .img-2 img{
+    rotate: -30deg;
+  }
+
+  @media screen and (max-width: 360px) {
+    .home{
+      margin: 10px 0;
+    }
+  }
+  @media screen and (max-width:560px) {
+    .img-2{
+      display: none;
+    }
+    .part-1{
+      width: 60%;
+    }
+    .part-2{
+      width: 30%;
+    }
+    .img-1 img{
+      rotate: 0deg;
+      height: 300px;
+      margin-left: 50px;
+    }
+    .part-1 p{
+      text-align: justify;
+    }
+  }
+
+  @media screen and (min-width:560px) and (max-width:768px){
+    .img-2{
+      display: none;
+    }
+    .part-1{
+      width: 60%;
+    }
+    .part-2{
+      width: 30%;
+    }
+    .img-1 img{
+      rotate: -30deg;
+    }
+    .part-1 p{
+      text-align: justify;
+    }
+  }
+
+  
