@@ -7,9 +7,9 @@ import './ProductList.css'
 const ProductList = () => {
   const location = useLocation();
   const { type } = location.state;
-  const products = useSelector(
-    (state) => state.wines[type?.toLowerCase()] || []
-  );
+  // Access the wines data from Redux state
+  const winesData = useSelector((state) => state.wines.wines || []);
+  const products = winesData.find((item) => item.type === type)?.value || [];
   return (
     <>
       <div className="product-list-conainer">

@@ -18,19 +18,22 @@ const ProductDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const { type } = location.state;
+  console.log(type);
 
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
-  const products = useSelector(
-    (state) => state.wines[type?.toLowerCase()] || []
-  );
+  // Access the wines data from Redux state
+  const winesData = useSelector((state) => state.wines.wines || []);
+  const products = winesData.find((item) => item.type === type)?.value || [];
+
   const { currentUser } = useSelector((state) => state.user);
 
   const { products : cart } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userId = currentUser?._id;
+
   useEffect(() => {
     const selectedProduct = products.find(
       (product) => product.id === parseInt(id)
@@ -41,7 +44,7 @@ const ProductDetails = () => {
       .filter((item) => item.id !== parseInt(id))
       .slice(0, 50); // Limit to 50 related products
     setRelatedProducts(related);
-  }, [id, products]);
+  }, [id]);
 
   // setting of slider
   const settings = {
