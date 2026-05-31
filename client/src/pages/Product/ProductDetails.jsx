@@ -106,7 +106,10 @@ const ProductDetails = () => {
   };
 
   const handleShopping = async (product) => {
-    if (!currentUser) navigate("/sign-in");
+    if (!currentUser) {
+      navigate("/sign-in");
+      return;
+    }
 
     try {
       const response = await axios.post('/api/cart/payment', {

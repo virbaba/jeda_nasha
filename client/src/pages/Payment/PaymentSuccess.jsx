@@ -13,7 +13,7 @@ const PaymentSuccess = () => {
   const [isPaymentVerified, setIsPaymentVerified] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
-  const userId = currentUser._id;
+  const userId = currentUser?._id;
 
   const query = new URLSearchParams(location.search);
   const sessionId = query.get("session_id");
@@ -24,8 +24,14 @@ const PaymentSuccess = () => {
         const response = await axios.post("/api/cart/verifyPayment", { sessionId });
         if (response.data.success) {
           setIsPaymentVerified(true);
-          await axios.post("/api/cart/clearCart", { userId });
-          dispatch(clearCart());
+          if (userId) {
+            try {
+              await axios.post("/api/cart/clearCart", { userId });
+              dispatch(clearCart());
+            } catch (clearCartError) {
+              console.error("Error clearing cart after payment:", clearCartError);
+            }
+          }
         } else {
           navigate("/paymentcancel");
         }
@@ -42,7 +48,7 @@ const PaymentSuccess = () => {
     } else {
       navigate("/paymentcancel");
     }
-  }, [sessionId, navigate, dispatch]);
+  }, [sessionId, navigate, dispatch, userId]);
 
   if (isLoading) {
     return <div>Loading...</div>;

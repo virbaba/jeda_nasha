@@ -14,6 +14,6 @@ router.delete('/delete', verifyToken, deleteCart);
 
 router.post('/payment', verifyToken, singleProductPayment);
 router.post('/cartPayment', verifyToken, cartProductPayment);
-router.post('/verifyPayment', verifyToken, verifyPayment);
+router.post('/verifyPayment', verifyPayment);
 
 export default router;

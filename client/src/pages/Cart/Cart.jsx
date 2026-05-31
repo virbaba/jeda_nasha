@@ -80,6 +80,10 @@ const Cart = () => {
   };
 
   const handlePayment = async (products) => {
+    if (!currentUser) {
+      window.location.href = '/sign-in';
+      return;
+    }
     try {
       const response = await axios.post('/api/cart/cartPayment', {
         email: currentUser.email,
@@ -92,7 +96,7 @@ const Cart = () => {
     } catch (error) {
       console.error('Error processing payment:', error);
     }
-  }
+  };
 
   return (
     <>
