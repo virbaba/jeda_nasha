@@ -143,6 +143,9 @@ export const singleProductPayment = async (req, res, next) => {
   const stripe = stripePackage(process.env.STRIPE_SECRET);
   const { email, product } = req.body;
 
+  const origin = req.get("origin") || process.env.FRONTEND_URL || "https://jeda-nasha.onrender.com";
+  const frontendUrl = origin.endsWith("/") ? origin.slice(0, -1) : origin;
+
   try {
     const session = await stripe.checkout.sessions.create({
       line_items: [
@@ -161,8 +164,8 @@ export const singleProductPayment = async (req, res, next) => {
       ],
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/paymentsuccess?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/paymentcancel`,
+      success_url: `${frontendUrl}/paymentsuccess?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${frontendUrl}/paymentcancel`,
       customer_email: email,
     });
 
@@ -175,6 +178,10 @@ export const singleProductPayment = async (req, res, next) => {
 export const cartProductPayment = async (req, res, next) => {
   const stripe = stripePackage(process.env.STRIPE_SECRET);
   const { email, products } = req.body;
+
+  const origin = req.get("origin") || process.env.FRONTEND_URL || "https://jeda-nasha.onrender.com";
+  const frontendUrl = origin.endsWith("/") ? origin.slice(0, -1) : origin;
+
   try {
     // Prepare line items for Stripe Checkout session
     const lineItems = products.map((items) => ({
@@ -194,8 +201,8 @@ export const cartProductPayment = async (req, res, next) => {
       line_items: lineItems,
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/paymentsuccess?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/paymentcancel`,
+      success_url: `${frontendUrl}/paymentsuccess?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${frontendUrl}/paymentcancel`,
       customer_email: email,
     });
 
