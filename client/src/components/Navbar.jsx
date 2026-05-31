@@ -12,7 +12,6 @@ import {
   fetchCartFailure,
 } from "../redux-toolkit/cart/cartSlice";
 import { setFilteredWines } from "../redux-toolkit/ProductList/ProductListSlice.js";
-import { Link as ScrollLink } from "react-scroll";
 
 import axios from "axios";
 
@@ -103,14 +102,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="navlink">
-            <ScrollLink to="shop" smooth={true} duration={1500}>
-              Shop
-            </ScrollLink>
-            <ScrollLink to="footer" smooth={true} duration={1500}>
-              Contact
-            </ScrollLink>
-          </div>
 
           <div className="cart-auth">
             <div className="cart" onClick={handleCartClick}>
